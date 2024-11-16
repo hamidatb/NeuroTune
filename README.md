@@ -1,34 +1,34 @@
-# 🎵 NeuroTune: Redefining Music Accessibility for All Abilities 🎵
+# 🎵 NeuroTune: Redefining Music Accessibility for all Abilities 🎵
 
 
 ### **What Inspired Us?**  
-Music is one of the most universal sources of comfort and joy. For many of us, the process of finding the right playlist is simple: we open Spotify or Apple Music and search for "happy playlist" or "sad playlist." But have you ever considered how many steps this actually involves? Or the level of fine motor control required to navigate through these apps?
+Music is one of the most universal sources of comfort and joy. For many of us, the process of finding the right playlist is simple: we open our music app and search for "happy playlist" or "sad playlist." But have you ever considered how many steps this actually involves? Or the level of fine motor control required to navigate through these apps?
 
-Now imagine someone with Parkinson's disease or motor tremors. These seemingly simple tasks become overwhelming. Technology has the power—and responsibility—to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical limitations.
+Now imagine someone with a disability that might impact motor control and speech, such as cerebral palsy. These seemingly simple tasks become overwhelming. Technology has the power—and responsibility— to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical or mental limitations.
 
 
 ## 🌟 **What Is NeuroTune?**
-**NeuroTune** is a groundbreaking application designed to empower individuals with motor impairments, such as Parkinson’s disease, by combining:
+**NeuroTune** is a groundbreaking application designed to empower individuals over a large range of motor and speech disabilities:
 - **Real-Time Eye-Tracking** to enable effortless navigation.
 - **Mood Detection with EEG Data** from the Muse S device to create personalized music experiences.
 
-This hands-free system provides users with instant access to tailored playlists based on their emotions, making music more accessible and impactful. Users can navigate through the application by simply focusing their gaze on an option for 3 seconds. The **🧠 brain-eye emoji cursor** provides intuitive, real-time feedback as it tracks their eye movements, ensuring a smooth and interactive experience.
+This hands-free system provides users with instant access to tailored playlists based on their emotions, making music more accessible and impactful. Users can navigate through the application by simply focusing their gaze on an option for 3 seconds. The **🟢 green circle cursor** provides intuitive, real-time feedback as it tracks their eye movements, ensuring a smooth and interactive experience.
 
 
 ## 💡 **Key Features**
 
 ### 🎯 **Real-Time Eye Tracking**
-We trained our **custom eye-tracking neural network** to map gaze positions to specific screen quadrants. Users can navigate the app with just their eyes, no need for physical touch or mouse movements.
+We trained our **custom eye-tracking neural network** to map gaze positions to specific screen quadrants. Users can navigate the app with just their eyes, no need for physical touch or verbal instructions.
 
 ### 🧠 **Mood Detection**
-Using EEG data collected via the **Muse S device**, we trained a neural network to classify emotional states like happiness, sadness, relaxation, and more. NeuroTune uses these insights to tailor playlists that match the user’s mood.
+Using EEG data collected via the **Muse S device**, we trained a neural network to classify emotional states like happiness, sadness, relaxation, and anger. NeuroTune uses these insights to tailor playlists that match the user’s mood.
 
-### 🎵 **Spotify Integration**
-The app connects directly with Spotify to fetch and play personalized playlists based on the detected mood. Whether you're feeling joyful or reflective, NeuroTune brings you the perfect soundtrack.
+### 🎵 **Playlist Integration**
+The app connects directly with a custom playlist to fetch and play personalized songs based on the detected mood. Whether you're feeling joyful or reflective, NeuroTune brings you the perfect soundtrack.
 
 ### 💻 **Accessible and Aesthetic UI**
-- **Large readable fonts** and a **clean yellow background** ensure the interface is intuitive and welcoming.
-- A subtle **aesthetic green ball cursor** smoothly transitions across the screen, showing users exactly where their gaze is focused.
+- **Large readable fonts** and **constrastive colors** ensure the interface is intuitive, accessible, and welcoming.
+- A distinct **green circle cursor** smoothly transitions across the screen, showing users exactly where their gaze is focused.
 - Real-time visual feedback highlights active quadrants to enhance accessibility.
 
 ### 🌐 **Hands-Free Navigation**
@@ -41,7 +41,7 @@ Users can control the app entirely with their eyes:
 
 ### **Core Machine Learning**
 - **Custom Eye-Tracking Model**: Trained on relative pupil positions to accurately predict screen quadrants.
-- **Muse S Emotion Model**: Maps EEG signals from the Muse S headband to emotional states like happiness or sadness.
+- **Muse S Emotion Model**: Maps EEG signals from the Muse S headband to four core emotional states- hapiness, sadness, relaxed, and anger.
 
 ### **Frontend**
 - **HTML5**, **CSS3**, **JavaScript**
@@ -56,10 +56,8 @@ Users can control the app entirely with their eyes:
 - **OpenCV**: Captures and processes real-time video streams for eye-tracking.
 - **Dlib**: Detects facial landmarks to isolate the eyes and calculate pupil positions.
 
-### **APIs**
-- **Spotify API**: Retrieves playlists based on mood predictions and streams music directly within the app.
-
 ### **Tools & Libraries**
+- **Pykan**: Import the necessary libraries for the KAN model.
 - **NumPy**: Numerical computations for machine learning models.
 - **Scikit-learn**: Training and evaluating neural networks.
 - **Pickle**: For model serialization.
@@ -69,7 +67,7 @@ Users can control the app entirely with their eyes:
 
 ### **Homepage**
 <img src="static/media/screenshots/homepage.png" alt="Homepage" width="500">  
-<p> 🧠 Brain-Eye Emoji Cursor: The eye-tracking cursor (a brain-eye emoji) moves with your gaze, providing real-time visual feedback. </p>
+<p> 🟢 green circle cursor: The eye-tracking cursor moves with your gaze, providing real-time visual feedback. </p>
 
 ### **Mood Detection Screen**
 <img src="static/media/screenshots/mood_detection0.png" alt="Mood Detection" width="500">  
@@ -85,8 +83,8 @@ Users can control the app entirely with their eyes:
 Explore the insights behind NeuroTune's advanced models:
 
 ### **Mood Detection Model (KAN)**
-- The **KAN (Kolmogorov-Arnold Network)** was trained using EEG data from the Muse S device, enabling precise mood classification.
-- Below are some visualizations showcasing the training process, validation accuracy, and model architecture:
+- Our custom **KAN (Kolmogorov-Arnold Network)** was trained using EEG data from the Muse S device, enabling precise mood classification.
+- Below are some visualizations showcasing the training process, model architecture, and validation accuracy:
 ###### **Trained KAN Model**
 <img src="static/ml_visualizations/KAN_better.png" alt="Trained KAN Model" width="500"> 
 
@@ -108,7 +106,7 @@ Explore the insights behind NeuroTune's advanced models:
 
 1. **Training the Mood Detection Model**
    - We collected EEG data using the Muse S headband across different emotional states.
-   - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, and relaxation. 
+   - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, anger, and relaxation. 
    - Here, we employed Jupyter Notebooks and Google Colab to explore many models, before settling on a KAN   
 
 2. **Training the Eye-Tracking Model**
