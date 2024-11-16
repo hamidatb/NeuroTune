@@ -21,7 +21,7 @@ import sys
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.ra('SECRET_KEY')
+app.secret_key = os.urandom(16)
 app.config['WTF_CSRF_ENABLED'] = False
 
 # Initialize SocketIO with the app
@@ -74,8 +74,9 @@ test_playlists = {
             'image_url': 'images/happy_pharrell.jpg'
         },
         {
-            'name': 'Can’t Stop the Feeling - Justin Timberlake',
-            'image_url': 'images/cant_stop_feeling.jpg'
+            'name': 'Can’t Stop the Feeling - Justin Timberlake',     
+            'file_path' : 'music/cant_the_feeling',       
+            'image_url': 'images/cant_stop_feeling.jpeg'
         },
         {
             'name': 'I Gotta Feeling - Black Eyed Peas',
@@ -140,7 +141,7 @@ def map_quadrant_to_screen(quadrant):
 def tracking_function():
     global tracking_active
     tracking_active = True
-    cap = cv2.VideoCapture(1)  # Change to 1 if your camera is on index 1
+    cap = cv2.VideoCapture(0)  # Change to 1 if your camera is on index 1
     if not cap.isOpened():
         print("Error: Unable to access camera.")
         tracking_active = False
@@ -244,31 +245,57 @@ def show_playlist():
 
 @app.route('/skip_song', methods=['POST'])
 def skip_song():
-    global mood
-    if not mood:
-        return jsonify({'success': False, 'message': 'Mood not detected.'}), 400
+    try:
+        global mood
+        print(f"Current mood: {mood}")  # Debug log
+        
+        if not mood:
+            return jsonify({'success': False, 'message': 'Mood not detected.'}), 400
 
-    # Fetch playlist from session
-    playlist = session.get('playlist', [])
-    current_song_index = session.get('current_song_index', 0)
+        # Fetch playlist from session
+        playlist = session.get('playlist', [])
+        current_song_index = session.get('current_song_index', 0)
+        
+        print(f"Playlist length: {len(playlist)}")  # Debug log
+        print(f"Current index: {current_song_index}")  # Debug log
 
-    # Move to the next song
-    next_song_index = current_song_index + 1
-    if next_song_index >= len(playlist):
-        return jsonify({'success': False, 'message': 'No more songs in the playlist.'}), 200
+        # Move to the next song
+        next_song_index = current_song_index + 1
+        if next_song_index >= len(playlist):
+            return jsonify({'success': False, 'message': 'No more songs in the playlist.'}), 200
 
-    # Update session with the new current song index
-    session['current_song_index'] = next_song_index
-    next_song = playlist[next_song_index]
-    print(f"{next_song}")
+        # Update session with the new current song index
+        session['current_song_index'] = next_song_index
+        next_song = playlist[next_song_index]
+        print(f"Next song data: {next_song}")  # Debug log
 
-    next_song_data = {
-        'name': next_song['name'],
-        'file_path': url_for('static', filename=next_song['file_path']),
-        'image_url': url_for('static', filename=next_song['image_url']),
-    }
+        next_song_data = {
+            'name': next_song['name'],
+            'file_path': url_for('static', filename=next_song['file_path']),
+            'image_url': url_for('static', filename=next_song['image_url']),
+        }
 
-    return jsonify({'success': True, 'song': next_song_data}), 200
+        return jsonify({
+            'success': True,
+            'song': next_song_data
+        })
+
+    except Exception as e:
+        print(f"Error in skip_song: {str(e)}")  # Debug log
+        return jsonify({
+            'success': False,
+            'message': f"Server error: {str(e)}"
+        }), 500
+
+@app.route('/debug_state', methods=['GET'])
+def debug_state():
+    return jsonify({
+        'mood': mood if 'mood' in globals() else None,
+        'playlist_length': len(session.get('playlist', [])),
+        'current_index': session.get('current_song_index', 0),
+        'session_data': dict(session)
+    })
+
 @app.route('/rate_song', methods=['POST'])
 def rate_song():
     data = request.get_json()

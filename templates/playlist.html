@@ -18,19 +18,31 @@
 {% block content %}
 
 <style>
-    html, body {
-        height: 100%; /* Ensure the elements take full height */
-        margin: 0; /* Remove any default margin */
-        padding: 0; /* Remove any default padding */
+    html,
+    body {
+        height: 100%;
+        /* Ensure the elements take full height */
+        margin: 0;
+        /* Remove any default margin */
+        padding: 0;
+        /* Remove any default padding */
     }
 
     body {
         background-image: url('/static/images/background.png');
-        background-size: cover; /* Ensure the image covers the entire background */
-        background-repeat: no-repeat; /* Prevent the image from repeating */
-        background-position: center; /* Center the image */
+        background-size: cover;
+        /* Ensure the image covers the entire background */
+        background-repeat: no-repeat;
+        /* Prevent the image from repeating */
+        background-position: center;
+        /* Center the image */
     }
-    
+
+    #quadrant-buttons {
+        height: 50px;
+        width: 80px;
+    }
+
     /* Responsive adjustments if needed */
 </style>
 
@@ -100,6 +112,7 @@
 
         // **Skip Button Click Event**
         skipBtn.addEventListener('click', () => {
+            console.log('Skip button clicked');
             fetch('/skip_song', {
                 method: 'POST',
                 headers: {
@@ -107,43 +120,46 @@
                 },
                 // You can include additional data if needed
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const nextSong = data.song;
+                .then(response => {
+                    console.log('Response received:', response);
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        const nextSong = data.song;
 
-                    // Update audio source
-                    audio.src = nextSong.file_path;
+                        // Update audio source
+                        audio.src = nextSong.file_path;
 
-                    // Update song title
-                    songTitleElement.textContent = nextSong.name;
+                        // Update song title
+                        songTitleElement.textContent = nextSong.name;
 
-                    // Update album cover
-                    albumCoverElement.src = nextSong.image_url;
+                        // Update album cover
+                        albumCoverElement.src = nextSong.image_url;
 
-                    // Reset time display and progress bar
-                    timeDisplay.textContent = '0:00 / 0:00';
-                    progress.style.width = '0%';
+                        // Reset time display and progress bar
+                        timeDisplay.textContent = '0:00 / 0:00';
+                        progress.style.width = '0%';
 
-                    // Play the new song
-                    audio.play();
-                    isPlaying = true;
-                    playPauseBtn.textContent = '⏸️'; // Pause icon
+                        // Play the new song
+                        audio.play();
+                        isPlaying = true;
+                        playPauseBtn.textContent = '⏸️'; // Pause icon
 
-                    // If in rating mode, reset to normal mode
-                    if (isRatingMode) {
-                        toggleRatingMode(false);
+                        // If in rating mode, reset to normal mode
+                        if (isRatingMode) {
+                            toggleRatingMode(false);
+                        }
+                    } else {
+                        // Handle no more songs
+                        alert(data.message);
+                        // Optionally redirect to thank you page
+                        window.location.href = '/thankyou';
                     }
-                } else {
-                    // Handle no more songs
-                    alert(data.message);
-                    // Optionally redirect to thank you page
-                    window.location.href = '/thankyou';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
 
         // **Rate Button Click Event**
@@ -182,7 +198,7 @@
             const action = event.target.getAttribute('data-action');
             if (!action) return;
 
-            switch(action) {
+            switch (action) {
                 case 'like':
                     sendRating('like');
                     break;
@@ -220,52 +236,52 @@
                 },
                 body: JSON.stringify({ action: action })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (action === 'like') {
-                        // Handle like action (e.g., show a confirmation)
-                        alert('You liked this song!');
-                        // Optionally, exit rating mode
-                        toggleRatingMode(false);
-                    } else if (action === 'dislike') {
-                        if (data.song) {
-                            const nextSong = data.song;
-
-                            // Update audio source
-                            audio.src = nextSong.file_path;
-
-                            // Update song title
-                            songTitleElement.textContent = nextSong.name;
-
-                            // Update album cover
-                            albumCoverElement.src = nextSong.image_url;
-
-                            // Reset time display and progress bar
-                            timeDisplay.textContent = '0:00 / 0:00';
-                            progress.style.width = '0%';
-
-                            // Play the new song
-                            audio.play();
-                            isPlaying = true;
-                            playPauseBtn.textContent = '⏸️'; // Pause icon
-
-                            // Exit rating mode
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        if (action === 'like') {
+                            // Handle like action (e.g., show a confirmation)
+                            alert('You liked this song!');
+                            // Optionally, exit rating mode
                             toggleRatingMode(false);
-                        } else {
-                            // No more songs after dislike
-                            alert(data.message);
-                            window.location.href = '/thankyou';
+                        } else if (action === 'dislike') {
+                            if (data.song) {
+                                const nextSong = data.song;
+
+                                // Update audio source
+                                audio.src = nextSong.file_path;
+
+                                // Update song title
+                                songTitleElement.textContent = nextSong.name;
+
+                                // Update album cover
+                                albumCoverElement.src = nextSong.image_url;
+
+                                // Reset time display and progress bar
+                                timeDisplay.textContent = '0:00 / 0:00';
+                                progress.style.width = '0%';
+
+                                // Play the new song
+                                audio.play();
+                                isPlaying = true;
+                                playPauseBtn.textContent = '⏸️'; // Pause icon
+
+                                // Exit rating mode
+                                toggleRatingMode(false);
+                            } else {
+                                // No more songs after dislike
+                                alert(data.message);
+                                window.location.href = '/thankyou';
+                            }
                         }
+                    } else {
+                        // Handle error
+                        alert(data.message || 'An error occurred while rating the song.');
                     }
-                } else {
-                    // Handle error
-                    alert(data.message || 'An error occurred while rating the song.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
 
         // Update Progress Bar and Time Display
