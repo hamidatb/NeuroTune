@@ -97,7 +97,12 @@ Learn about the inspiration and functionality of NeuroTune through our explanati
 
 1. **Training the Mood Detection Model**
    - We collected EEG data using the Muse S headband across different emotional states.
-   - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, and relaxation.
+   - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, and relaxation. 
+   
+   - ![Mood Detection](static/media/screenshots/mood_detection0.png)
+   **🧠 Brain-Eye Emoji Cursor**: The eye-tracking cursor (a brain-eye emoji) moves with your gaze, providing real-time visual feedback.
+   
+
 
 2. **Training the Eye-Tracking Model**
    - Captured over 100 images of gaze positions for each screen quadrant.
