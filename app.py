@@ -83,6 +83,17 @@ test_playlists = {
             'file_path': 'music/i_gotta_feeling.mp3',
             'image_url': 'images/i_gotta_feeling.png'
         },
+        {
+            'name': 'Walking on Sunshine - Katrina and the Waves',
+            'file_path': 'music/walking_on_sunshine.mp3',
+            'image_url': 'images/walking_on_sunshine.png'
+        },
+        {
+            'name': 'Happy Together - The turtles',
+            'file_path': 'music/happy_together.mp3',
+            'image_url': 'images/happy_together.png'
+        },
+
     ],
     'Sad': [
         {
@@ -100,6 +111,16 @@ test_playlists = {
             'file_path': 'music/let_her_go.mp3',
             'image_url': 'images/let_her_go.jpg'
         },
+         {
+            'name': 'The Night We Met - Lord Huton',
+            'file_path': 'music/the_night_we_met.mp3',
+            'image_url': 'images/the_night_we_met.png'
+        },
+         {
+            'name': 'Tears in Heaven - Eric Clapton',
+            'file_path': 'music/tears_in_heaven.mp3',
+            'image_url': 'images/tears_in_heaven.png'
+        },
     ],
     'Angry': [
         {
@@ -116,6 +137,16 @@ test_playlists = {
             'name': 'Elevate - DJ Khalil',
             'file_path': 'music/elevate.mp3',
             'image_url': 'images/elevate.jpg'
+        },
+        {
+            'name': 'Smells Like Teen Spirit - Nirvana',
+            'file_path': 'music/smells_like_teen_spirit.mp3',
+            'image_url': 'images/smells_like_teen_spirit.png'
+        },
+        {
+            'name': 'Killing in the Name - Rage Against the Machine',
+            'file_path': 'music/killing_in_the_name.mp3',
+            'image_url': 'images/killing_in_the_name.png'
         },
     ],
 }
