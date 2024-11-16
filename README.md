@@ -88,6 +88,7 @@ Explore the insights behind NeuroTune's advanced models:
 
 ###### **Training Process**
 <img src="static/ml_visualizations/kan_training.png" alt="Training process" width="500"> 
+
 ###### **Plotting the KAN Model**
 <img src="static/ml_visualizations/KAN_better.png" alt="Plotting the KAN Model" width="500"> 
 
