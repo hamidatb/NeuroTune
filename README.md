@@ -87,6 +87,8 @@ Explore the insights behind NeuroTune's advanced models:
 ### **Mood Detection Model (KAN)**
 - The **KAN (Kolmogorov-Arnold Network)** was trained using EEG data from the Muse S device, enabling precise mood classification.
 - Below are some visualizations showcasing the training process, validation accuracy, and model architecture:
+###### **Trained KAN Model**
+<img src="static/ml_visualizations/KAN_better.png" alt="Trained KAN Model" width="500"> 
 
 ###### **Relative BrainWave Types for Moods**
 <img src="static/ml_visualizations/RelativeBrainwaveTypeForMoods.png" alt="Relative BrainWave Types for Moods" width="500">  
