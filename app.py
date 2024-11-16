@@ -260,6 +260,7 @@ def skip_song():
     # Update session with the new current song index
     session['current_song_index'] = next_song_index
     next_song = playlist[next_song_index]
+    print(f"{next_song}")
 
     next_song_data = {
         'name': next_song['name'],

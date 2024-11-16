@@ -12,7 +12,7 @@ Now imagine someone with Parkinson's disease or motor tremors. These seemingly s
 - **Real-Time Eye-Tracking** to enable effortless navigation.
 - **Mood Detection with EEG Data** from the Muse S device to create personalized music experiences.
 
-This hands-free system provides users with instant access to tailored playlists based on their emotions, making music more accessible and impactful.
+This hands-free system provides users with instant access to tailored playlists based on their emotions, making music more accessible and impactful. Users can navigate through the application by simply focusing their gaze on an option for 3 seconds. The **🧠 brain-eye emoji cursor** provides intuitive, real-time feedback as it tracks their eye movements, ensuring a smooth and interactive experience.
 
 
 ## 💡 **Key Features**
@@ -35,6 +35,33 @@ The app connects directly with Spotify to fetch and play personalized playlists 
 Users can control the app entirely with their eyes:
 - Move your gaze to navigate between interface options.
 - Engage in mood detection and enjoy therapeutic music without lifting a finger.
+
+---
+
+## 📽 **Explanation Video**
+Learn about the inspiration and functionality of NeuroTune through our explanation video:  
+<video width="100%" controls>
+  <source src="media/NeuroTune_Explanation.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>  
+
+---
+
+## 📸 **Screenshots of the Application**
+
+### **Homepage**
+![Homepage](static/media/screenshots/homepage.png)
+**🧠 Brain-Eye Emoji Cursor**: The eye-tracking cursor (a brain-eye emoji) moves with your gaze, providing real-time visual feedback.
+
+
+### **Mood Detection Screen**
+![Mood Detection](static/media/screenshots/mood_detection0.png)
+![Mood Detection](static/media/screenshots/mood_detection1.png)
+
+### **Music Player of Recommended Playlist**
+![Playlist Recommendation](static/media/screenshots/playlist_recommendation.png)
+
+---
 
 
 ## ⚙️ **Technology Stack**
@@ -124,3 +151,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Let’s make music accessible for all. 🎶 Together, we can change lives.
+
+
+
