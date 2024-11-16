@@ -10,9 +10,159 @@
 {% endblock %}
 
 {% block content %}
+<!-- Sparkles Background -->
+<div class="sparkles-container">
+    <div class="sparkle sparkle1"></div>
+    <div class="sparkle sparkle2"></div>
+    <div class="sparkle sparkle3"></div>
+    <div class="sparkle sparkle4"></div>
+    <div class="sparkle sparkle5"></div>
+    <div class="sparkle sparkle6"></div>
+    <div class="sparkle sparkle7"></div>
+    <div class="sparkle sparkle8"></div>
+    <div class="sparkle sparkle9"></div>
+    <div class="sparkle sparkle10"></div>
+</div>
+
 <div class="container">
     <h1>Your Mood: {{ mood }}</h1>
-    <p>We've detected that you're feeling {{ mood.lower() }}.</p>
+    <p>We've detected that you're feeling {{ mood.lower() }} 💭.</p>
     <p>Proceed to your personalized playlist.</p>
 </div>
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-image: url('/static/images/mood_detection.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    #quadrant-buttons {
+    position: relative;
+    z-index: 2; /* Above sparkles */
+    }
+
+    /* Ensure the sparkles are behind the content */
+    .sparkles-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Allow clicks through sparkles */
+        overflow: hidden;
+        z-index: 0; /* Behind other elements */
+    }
+
+    /* Sparkle Styling */
+    .sparkle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+        opacity: 0;
+        animation: sparkle-animation 6s infinite;
+    }
+
+    /* Positioning Sparkles at Various Locations */
+    .sparkle1 { top: 10%; left: 20%; animation-delay: 0s; }
+    .sparkle2 { top: 25%; left: 70%; animation-delay: 1s; }
+    .sparkle3 { top: 40%; left: 40%; animation-delay: 2s; }
+    .sparkle4 { top: 55%; left: 80%; animation-delay: 3s; }
+    .sparkle5 { top: 70%; left: 30%; animation-delay: 4s; }
+    .sparkle6 { top: 85%; left: 60%; animation-delay: 5s; }
+    .sparkle7 { top: 15%; left: 85%; animation-delay: 1.5s; }
+    .sparkle8 { top: 35%; left: 10%; animation-delay: 2.5s; }
+    .sparkle9 { top: 50%; left: 50%; animation-delay: 3.5s; }
+    .sparkle10 { top: 65%; left: 75%; animation-delay: 4.5s; }
+
+    /* Sparkle Animation */
+    @keyframes sparkle-animation {
+        0% {
+            transform: scale(0.5) translateY(0);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(1.5) translateY(-20px);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0.5) translateY(0);
+            opacity: 0;
+        }
+    }
+
+    /* Adjust the container to ensure content is above sparkles */
+    .container {
+        position: relative;
+        z-index: 1; /* Above sparkles */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Vertically center content */
+        align-items: center; /* Horizontally center content */
+        color: #342E1B; /* Dark brown for text */
+        height: 100vh; /* Full viewport height */
+        text-align: center; /* Ensure text is centered */
+    }
+
+
+    /* Title Styling */
+    .container h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        color: #342E1B;
+        font-weight: bold;
+        left: 50%;
+        bottom: 50%;
+    }
+
+    /* Paragraph Styling */
+    .container p {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #342E1B;
+        font-weight: lighter;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container h1 {
+            font-size: 2.5rem;
+        }
+
+        .container p {
+            font-size: 1.5rem;
+        }
+
+        .sparkle {
+            width: 7px;
+            height: 7px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".quadrant-button");
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const url = button.getAttribute("data-url");
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+    });
+</script>
+
 {% endblock %}

@@ -7,8 +7,47 @@
 {% endblock %}
 
 {% block content %}
+<style>
+    /* Ensure our styles take precedence by using higher specificity */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-image: url('/static/images/welcome.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .container {
+        position: fixed; /* Keep the container fixed relative to the viewport */
+        bottom: 5%; /* Position the text 5% from the bottom */
+        left: 5%; /* Position the text 5% from the left */
+        color: black; /* Text color */
+        margin: 0;
+        text-align: left; /* Align text to the left */
+        padding: 0;
+        width: auto; /* Prevent unnecessary width constraints */
+    }
+
+    .container h1 {
+        font-size: 4.5rem; /* Adjust size for emphasis */
+        font-weight: bold;
+        margin: 0; /* Remove extra margin */
+        padding: 0; /* Remove padding */
+        line-height: 1.2; /* Adjust spacing between lines */
+    }
+
+    .container p {
+        font-size: 2rem; /* Adjust size for readability */
+        margin-top: 1rem; /* Add spacing below the header */
+        margin-bottom: 0; /* Remove any extra bottom margin */
+    }
+</style>
+
 <div class="container">
-    <h1>Welcome to NeuroTune</h1>
-    <p>Your personalized music experience awaits.</p>
 </div>
 {% endblock %}

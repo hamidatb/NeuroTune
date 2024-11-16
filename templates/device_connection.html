@@ -2,35 +2,126 @@
 
 {% block quadrant_buttons %}
 <div id="quadrant-buttons">
-    <!-- Upper-left 'Home' button -->
-    <button id="button-top-left" class="quadrant-button" data-url="{{ url_for('index') }}">Home</button>
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>Connecting to Muse Device...</h1>
-    <p>Muse Connected: <span id="muse-status">❌</span></p>
-    <p id="reading-mood" style="display: none;">Reading Mood...</p>
-    <p id="ready-message" style="display: none;">Ready to Go!</p>
+    <h1 class="title">Connecting to Muse S...</h1>
+    <p class="status">Muse Connected: <span id="muse-status">❌</span></p>
+    <p id="reading-mood" class="status" style="display: none;">Collecting Brain Waves..</p>
+    <p id="ready-message" class="status" style="display: none;">Ready to Predict!</p>
 </div>
 
+<!-- Wave Animation -->
+<div class="wave-container">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="wavePath" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v64h-352z"></path>
+        </defs>
+        <g class="parallax">
+            <use href="#wavePath" x="50" y="3" fill="rgba(255,255,255,0.7)" />
+            <use href="#wavePath" x="50" y="0" fill="rgba(255,255,255,0.5)" />
+            <use href="#wavePath" x="50" y="9" fill="#fff" />
+        </g>
+    </svg>
+</div>
+
+<style>
+
+    .container {
+        text-align: center;
+        padding: 50px;
+    }
+
+    .title {
+        font-size: 4em; /* Increased font size for the title */
+        margin-bottom: 20px;
+    }
+
+    .status {
+        font-size: 3em; /* Increased font size for status messages */
+        margin: 10px 0;
+        color:#5e5331; 
+    }
+
+    /* Wave Animation Styling */
+    .wave-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 250px; /* Increased height for taller waves */
+        overflow: hidden;
+        line-height: 0;
+    }
+
+    .waves {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .parallax use {
+        animation: move-forever 4s linear infinite; /* Reduced duration for faster movement */
+    }
+
+    .parallax use:nth-child(1) {
+        animation-delay: -1s;
+        animation-duration: 4s; /* Faster wave speed for the first wave */
+        fill: rgba(255, 255, 255, 0.4);
+    }
+
+    .parallax use:nth-child(2) {
+        animation-delay: -2s;
+        animation-duration: 5s; /* Faster wave speed for the second wave */
+        fill: rgba(255, 255, 255, 0.6);
+    }
+
+    .parallax use:nth-child(3) {
+        animation-delay: -3s;
+        animation-duration: 6s; /* Faster wave speed for the third wave */
+        fill: #fff;
+    }
+
+    @keyframes move-forever {
+        0% {
+            transform: translate3d(-150px, 0, 0); /* Move left more aggressively for faster effect */
+        }
+        100% {
+            transform: translate3d(150px, 0, 0); /* Complete the animation faster */
+        }
+    }
+</style>
+
 <script>
-    // Simulate device connection and mood reading
-    setTimeout(() => {
-        document.getElementById('muse-status').textContent = '✅';
-        document.getElementById('reading-mood').style.display = 'block';
+    // Flag for debug mode
+    const debugMode = false; // Set to false for production
 
-        // Simulate mood reading
-        setTimeout(() => {
-            document.getElementById('reading-mood').style.display = 'none';
+    if (debugMode) {
+        // Ensure no timeouts or animations
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('debug'); // Add debug class to stop wave movement
+            document.getElementById('muse-status').textContent = '✅';
             document.getElementById('ready-message').style.display = 'block';
+        });
+    } else {
+        // Simulate device connection and mood reading
+        setTimeout(() => {
+            document.getElementById('muse-status').textContent = '✅';
+            document.getElementById('reading-mood').style.display = 'block';
 
-            // Transition to mood detection after a short delay
+            // Simulate mood reading
             setTimeout(() => {
-                window.location.href = "{{ url_for('detect_mood') }}";
-            }, 3000);
-        }, 5000);
-    }, 2000);
+                document.getElementById('reading-mood').style.display = 'none';
+                document.getElementById('ready-message').style.display = 'block';
+
+                // Transition to mood detection after a short delay
+                setTimeout(() => {
+                    window.location.href = "{{ url_for('detect_mood') }}";
+                }, 3000);
+            }, 5000);
+        }, 2000);
+    }
 </script>
 {% endblock %}
