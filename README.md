@@ -85,7 +85,7 @@ Users can control the app entirely with their eyes:
 Explore the insights behind NeuroTune's advanced models:
 
 ### **Mood Detection Model (KAN)**
-- The **KAN (Keras Artificial Neural) network** was trained using EEG data from the Muse S device, enabling precise mood classification.
+- The **KAN (Kolmogorov-Arnold Network)** was trained using EEG data from the Muse S device, enabling precise mood classification.
 - Below are some visualizations showcasing the training process, validation accuracy, and model architecture:
 
 ###### **Relative BrainWave Types for Moods**
@@ -107,12 +107,11 @@ Explore the insights behind NeuroTune's advanced models:
 1. **Training the Mood Detection Model**
    - We collected EEG data using the Muse S headband across different emotional states.
    - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, and relaxation. 
-   - Here, we employed Jpuyter Notebooks and Google Colab to explore many models, before settling on a KAN   
+   - Here, we employed Jupyter Notebooks and Google Colab to explore many models, before settling on a KAN   
 
 2. **Training the Eye-Tracking Model**
    - Captured over 200 images of gaze positions for each screen quadrant.
    - Extracted relative pupil positions and trained a custom eye-tracking model to map these positions to screen quadrants.
-   
 
 3. **Real-Time Communication**
    - Integrated Flask-SocketIO to send gaze predictions from the backend to the browser in real-time.
