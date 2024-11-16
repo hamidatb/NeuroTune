@@ -12,6 +12,7 @@ body {
     overflow: hidden;
 }
 
+
 /* Main Container Styling */
 .container {
     display: flex;
@@ -35,35 +36,58 @@ h2, p {
     margin-bottom: 15px;
 }
 
-button {
-    padding: 15px 30px;
-    font-size: 1.5rem;
-    background-color: #342E1B;
-    color: #FFE695;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #57472F;
-    transform: scale(1.05);
-    transition: 0.3s ease;
-}
-
+/* Cursor Dot Styling */
 /* Cursor Dot Styling */
 #cursor-dot {
     position: fixed;
-    width: 100px;
-    height: 100px;
-    background-color: #7d5b3a; /* Bright green */
-    border-radius: 50%;
+    width: auto; /* Adjust width dynamically for the emoji */
+    height: auto; /* Adjust height dynamically for the emoji */
+    font-size: 3rem; /* Adjust the size of the emoji */
+    background-color: transparent; /* Remove the background color */
     pointer-events: none;
     z-index: 1000;
     transition: transform 0.7s ease; /* Smooth transitions */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Use the emoji as the content */
+#cursor-dot::before {
+    content: "🧠"; /* Music note emoji */
+    font-size: 8rem; /* Adjust emoji size */
+    display: inline-block;
+}
+
+
+/* Progress Bar Styling */
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background-color: #fffdcf;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background-color: #566215;
+    border-radius: 5px;
+    transition: width 0.2s ease-in-out;
+}
+
+.time-display {
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 2rem;
+    color: #555151;
+    margin-bottom: 5px;
+}
 
 /* Album Section */
 .album-section {
@@ -113,8 +137,7 @@ button:hover {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #FFE695;
+    color: #948659;
     padding: 10px 20px;
     border-radius: 8px;
     font-size: 1.8rem;
@@ -207,3 +230,4 @@ button:hover {
     transition: 0.3s ease;
     font-size: 2.4rem;
 }
+

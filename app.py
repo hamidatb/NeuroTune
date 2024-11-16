@@ -75,13 +75,12 @@ test_playlists = {
         },
         {
             'name': 'Can’t Stop the Feeling - Justin Timberlake',
-            'file_path': 'music/cant_stop_feeling.mp3',
             'image_url': 'images/cant_stop_feeling.jpg'
         },
         {
             'name': 'I Gotta Feeling - Black Eyed Peas',
             'file_path': 'music/i_gotta_feeling.mp3',
-            'image_url': 'images/i_gotta_feeling.jpg'
+            'image_url': 'images/i_gotta_feeling.png'
         },
     ],
     'Sad': [
@@ -243,33 +242,73 @@ def show_playlist():
 
     return render_template('playlist.html', song=current_song, mood=mood.capitalize())
 
-@app.route('/rate_song_view')
-def rate_song_view():
+@app.route('/skip_song', methods=['POST'])
+def skip_song():
     global mood
     if not mood:
-        return redirect(url_for('detect_mood'))
+        return jsonify({'success': False, 'message': 'Mood not detected.'}), 400
 
+    # Fetch playlist from session
     playlist = session.get('playlist', [])
     current_song_index = session.get('current_song_index', 0)
 
-    if current_song_index >= len(playlist):
-        return redirect(url_for('thank_you'))
+    # Move to the next song
+    next_song_index = current_song_index + 1
+    if next_song_index >= len(playlist):
+        return jsonify({'success': False, 'message': 'No more songs in the playlist.'}), 200
 
-    current_song = playlist[current_song_index]
+    # Update session with the new current song index
+    session['current_song_index'] = next_song_index
+    next_song = playlist[next_song_index]
+    print(f"{next_song}")
 
-    return render_template('rate_song.html', song=current_song, mood=mood.capitalize())
+    next_song_data = {
+        'name': next_song['name'],
+        'file_path': url_for('static', filename=next_song['file_path']),
+        'image_url': url_for('static', filename=next_song['image_url']),
+    }
 
+    return jsonify({'success': True, 'song': next_song_data}), 200
 @app.route('/rate_song', methods=['POST'])
 def rate_song():
     data = request.get_json()
     action = data.get('action')
+    
+    if not action:
+        return jsonify({'success': False, 'message': 'No action provided.'}), 400
+
+    if action not in ['like', 'dislike']:
+        return jsonify({'success': False, 'message': 'Invalid action.'}), 400
+
+    # Fetch playlist from session
+    playlist = session.get('playlist', [])
+    current_song_index = session.get('current_song_index', 0)
+
     if action == 'like':
         # Handle like action (e.g., add to favorites)
-        pass  # For testing, we'll just pass
+        # For demonstration, we'll just print it
+        print(f"User liked the song: {playlist[current_song_index]['name']}")
+        # You can implement additional logic here (e.g., store in a database)
+        return jsonify({'success': True, 'message': 'Song liked!'}), 200
+
     elif action == 'dislike':
-        # Handle dislike action
-        session['current_song_index'] += 1  # Move to next song
-    return jsonify({'success': True})
+        # Handle dislike action by moving to the next song
+        next_song_index = current_song_index + 1
+        if next_song_index >= len(playlist):
+            return jsonify({'success': True, 'message': 'No more songs in the playlist.'}), 200
+
+        # Update session with the new current song index
+        session['current_song_index'] = next_song_index
+        next_song = playlist[next_song_index]
+
+        next_song_data = {
+            'name': next_song['name'],
+            'file_path': url_for('static', filename=next_song['file_path']),
+            'image_url': url_for('static', filename=next_song['image_url']),
+        }
+
+        return jsonify({'success': True, 'song': next_song_data}), 200
+
 
 @app.route('/feedback')
 def feedback():
