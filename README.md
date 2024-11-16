@@ -36,33 +36,6 @@ Users can control the app entirely with their eyes:
 - Move your gaze to navigate between interface options.
 - Engage in mood detection and enjoy therapeutic music without lifting a finger.
 
----
-
-## 📽 **Explanation Video**
-Learn about the inspiration and functionality of NeuroTune through our explanation video:  
-<video width="100%" controls>
-  <source src="media/NeuroTune_Explanation.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>  
-
----
-
-## 📸 **Screenshots of the Application**
-
-### **Homepage**
-![Homepage](static/media/screenshots/homepage.png)
-**🧠 Brain-Eye Emoji Cursor**: The eye-tracking cursor (a brain-eye emoji) moves with your gaze, providing real-time visual feedback.
-
-
-### **Mood Detection Screen**
-![Mood Detection](static/media/screenshots/mood_detection0.png)
-![Mood Detection](static/media/screenshots/mood_detection1.png)
-
-### **Music Player of Recommended Playlist**
-![Playlist Recommendation](static/media/screenshots/playlist_recommendation.png)
-
----
-
 
 ## ⚙️ **Technology Stack**
 
@@ -92,21 +65,54 @@ Learn about the inspiration and functionality of NeuroTune through our explanati
 - **Pickle**: For model serialization.
 - **Eventlet**: Asynchronous capabilities for real-time Flask apps.
 
+## 📸 **Screenshots of the Application**
+
+### **Homepage**
+<img src="static/media/screenshots/homepage.png" alt="Homepage" width="500">  
+<p> 🧠 Brain-Eye Emoji Cursor: The eye-tracking cursor (a brain-eye emoji) moves with your gaze, providing real-time visual feedback. </p>
+
+### **Mood Detection Screen**
+<img src="static/media/screenshots/mood_detection0.png" alt="Mood Detection" width="500">  
+
+<img src="static/media/screenshots/mood_detection1.png" alt="Mood Detection" width="500">
+
+### **Music Player of Recommended Playlist**
+<img src="static/media/screenshots/playlist_recommendation.png" alt="Playlist Recommendation" width="500">  
+
+
+## 📊 **Machine Learning Visualizations**
+
+Explore the insights behind NeuroTune's advanced models:
+
+### **Mood Detection Model (KAN)**
+- The **KAN (Keras Artificial Neural) network** was trained using EEG data from the Muse S device, enabling precise mood classification.
+- Below are some visualizations showcasing the training process, validation accuracy, and model architecture:
+
+###### **Relative BrainWave Types for Moods**
+<img src="static/ml_visualizations/RelativeBrainwaveTypeForMoods.png" alt="Relative BrainWave Types for Moods" width="500">  
+
+###### **Multivariable Correlation Between Brain Types and Moods**
+<img src="static/ml_visualizations/MVCorrBetweenBrainwaveTypeAndMood.png" alt="Multivariable Correlation Between Brain Types and Moods" width="500">  
+
+- Custom-trained on relative pupil positions to predict screen quadrants with high accuracy.
+- Below are visualizations demonstrating its performance:
+
+###### **Quadrant Prediction Training**
+<img src="static/ml_visualizations/training_gaze_model.png" alt="Quadrant Prediction Training" width="500">  
+---
+
 
 ## 🛠 **How We Built It**
 
 1. **Training the Mood Detection Model**
    - We collected EEG data using the Muse S headband across different emotional states.
    - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, and relaxation. 
-   
-   - ![Mood Detection](static/media/screenshots/mood_detection0.png)
-   **🧠 Brain-Eye Emoji Cursor**: The eye-tracking cursor (a brain-eye emoji) moves with your gaze, providing real-time visual feedback.
-   
-
+   - Here, we employed Jpuyter Notebooks and Google Colab to explore many models, before settling on a KAN   
 
 2. **Training the Eye-Tracking Model**
-   - Captured over 100 images of gaze positions for each screen quadrant.
+   - Captured over 200 images of gaze positions for each screen quadrant.
    - Extracted relative pupil positions and trained a custom eye-tracking model to map these positions to screen quadrants.
+   
 
 3. **Real-Time Communication**
    - Integrated Flask-SocketIO to send gaze predictions from the backend to the browser in real-time.
