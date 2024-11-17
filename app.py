@@ -75,7 +75,7 @@ test_playlists = {
         },
         {
             'name': 'Can’t Stop the Feeling - Justin Timberlake',     
-            'file_path' : 'music/cant_the_feeling',       
+            'file_path' : 'music/cant_the_feeling.mp3',       
             'image_url': 'images/cant_stop_feeling.jpeg'
         },
         {
@@ -122,7 +122,7 @@ test_playlists = {
             'image_url': 'images/tears_in_heaven.png'
         },
     ],
-    'Angry': [
+    'Stressed': [
         {
             'name': 'Break Stuff - Limp Bizkit',
             'file_path': 'music/break_stuff.mp3',
@@ -149,7 +149,35 @@ test_playlists = {
             'image_url': 'images/killing_in_the_name.png'
         },
     ],
+     'Relaxed': [
+        {
+            'name': 'Snowfall - Idealism',
+            'file_path': 'music/snowfall.mp3',
+            'image_url': 'images/snowfall.jpeg'
+        },
+        {
+            'name': 'Moonlight Sonata - Ludwig van Beethoven',
+            'file_path': 'music/moonlight_sonata.mp3',
+            'image_url': 'images/moonlight_sonata.jpeg'
+        },
+        {
+            'name': 'Weightless - Macroni Union',
+            'file_path': 'music/weightless.mp3',
+            'image_url': 'images/weightless.jpeg'
+        },
+        {
+            'name': 'River Flows in You - Yiruma',
+            'file_path': 'music/river_flows_in_you.mp3',
+            'image_url': 'images/river_flows_in_you.png'
+        },
+        {
+            'name': 'Clair de Lune - Claude Debussy',
+            'file_path': 'music/clair_de_lune.mp3',
+            'image_url': 'images/clair_de_lune.png'
+        },
+    ],
 }
+
 
 @app.route('/clear_session')
 def clear_session():
@@ -293,7 +321,7 @@ def skip_song():
         # Move to the next song
         next_song_index = current_song_index + 1
         if next_song_index >= len(playlist):
-            return jsonify({'success': False, 'message': 'No more songs in the playlist.'}), 200
+            return jsonify({'success': False, 'redirect': True, 'redirect_url': url_for('thank_you')}), 200
 
         # Update session with the new current song index
         session['current_song_index'] = next_song_index
@@ -347,13 +375,13 @@ def rate_song():
         # For demonstration, we'll just print it
         print(f"User liked the song: {playlist[current_song_index]['name']}")
         # You can implement additional logic here (e.g., store in a database)
-        return jsonify({'success': True, 'message': 'Song liked!'}), 200
+        # return jsonify({'success': True, 'message': 'Song liked!'}), 200
 
     elif action == 'dislike':
         # Handle dislike action by moving to the next song
         next_song_index = current_song_index + 1
         if next_song_index >= len(playlist):
-            return jsonify({'success': True, 'message': 'No more songs in the playlist.'}), 200
+            return jsonify({'success': True, 'redirect': True, 'redirect_url': url_for('thank_you')}), 200
 
         # Update session with the new current song index
         session['current_song_index'] = next_song_index
@@ -366,7 +394,7 @@ def rate_song():
         }
 
         return jsonify({'success': True, 'song': next_song_data}), 200
-
+    return '', 204
 
 @app.route('/feedback')
 def feedback():

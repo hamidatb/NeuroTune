@@ -125,6 +125,11 @@
                     return response.json();
                 })
                 .then(data => {
+                    if (data.redirect) {
+                        // If redirect flag is true, go to the thank you page
+                        window.location.href = data.redirect_url;
+                        return;
+                    }
                     if (data.success) {
                         const nextSong = data.song;
 
