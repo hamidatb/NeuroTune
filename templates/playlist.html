@@ -4,11 +4,11 @@
 
 <div id="quadrant-buttons">
     <!-- Upper-left 'Home' button -->
-    <button id="button-top-left" class="quadrant-button" data-url="{{ url_for('index') }}">Home</button>
+    <button id="button-top-left" class="quadrant-button" data-url="{{ url_for('index') }}">🏠</button>
     <!-- Upper-right 'Skip' button -->
-    <button id="button-top-right" class="quadrant-button" data-action="skip">Skip</button>
+    <button id="button-top-right" class="quadrant-button" data-action="skip">⏭️</button>
     <!-- Bottom-left 'Rate' button (initially) -->
-    <button id="button-bottom-left" class="quadrant-button" data-action="rate">⭐ Rate</button>
+    <button id="button-bottom-left" class="quadrant-button" data-action="rate">⭐</button>
     <!-- Bottom-right 'Pause' button (initially) -->
     <button id="button-bottom-right" class="quadrant-button" data-action="pause">⏸️</button>
 </div>
@@ -29,6 +29,18 @@
         background-size: cover; /* Ensure the image covers the entire background */
         background-repeat: no-repeat; /* Prevent the image from repeating */
         background-position: center; /* Center the image */
+    }
+    #button-bottom-right{
+        font-size: 14rem;
+    }
+    #button-bottom-left{
+        font-size: 14rem;
+    }
+    #button-top-left{
+        font-size: 14rem;
+    }
+    #button-top-right{
+        font-size: 14rem;
     }
     
     /* Responsive adjustments if needed */
@@ -161,14 +173,14 @@
             isRatingMode = enable;
             if (enable) {
                 // Change bottom-left and bottom-right buttons
-                rateBtn.textContent = '👍 Like';
+                rateBtn.textContent = '👍 ';
                 rateBtn.setAttribute('data-action', 'like');
 
-                playPauseBtn.textContent = '👎 Dislike';
+                playPauseBtn.textContent = '👎 ';
                 playPauseBtn.setAttribute('data-action', 'dislike');
             } else {
                 // Revert buttons to Rate and Pause
-                rateBtn.textContent = '⭐ Rate';
+                rateBtn.textContent = '⭐';
                 rateBtn.setAttribute('data-action', 'rate');
 
                 playPauseBtn.textContent = '⏸️'; // Pause icon

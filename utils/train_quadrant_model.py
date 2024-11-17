@@ -2,10 +2,11 @@ import os
 import json
 import pickle
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 
 def load_samples(data_dir='gaze_models/quadrants'):
     """Load samples from JSON files."""
@@ -42,7 +43,6 @@ def train_model(output_path='gaze_models/look_at_quadrants_model.pkl', scaler_pa
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 
-
     # Save the scaler for later use
     with open(scaler_path, 'wb') as f:
         pickle.dump(scaler, f)
@@ -59,6 +59,13 @@ def train_model(output_path='gaze_models/look_at_quadrants_model.pkl', scaler_pa
     y_pred = model.predict(X_test)
     print("Classification Report:")
     print(classification_report(y_test, y_pred, target_names=['top_left', 'top_right', 'bottom_left', 'bottom_right']))
+
+    # Generate and display a confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['top_left', 'top_right', 'bottom_left', 'bottom_right'])
+    disp.plot(cmap=plt.cm.Blues)
+    plt.title("Confusion Matrix")
+    plt.show()
 
     # Save the trained model
     with open(output_path, 'wb') as f:

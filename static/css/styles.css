@@ -37,26 +37,15 @@ h2, p {
 }
 
 /* Cursor Dot Styling */
-/* Cursor Dot Styling */
 #cursor-dot {
     position: fixed;
-    width: auto; /* Adjust width dynamically for the emoji */
-    height: auto; /* Adjust height dynamically for the emoji */
-    font-size: 3rem; /* Adjust the size of the emoji */
-    background-color: transparent; /* Remove the background color */
-    pointer-events: none;
+    width: 200px; /* Adjust the size of the dot */
+    height: 200px; /* Adjust the size of the dot */
+    background-color: #39ff14; /* Neon green color */
+    border-radius: 50%; /* Make it circular */
+    pointer-events: none; /* Prevent interaction with the cursor */
     z-index: 1000;
-    transition: transform 0.7s ease; /* Smooth transitions */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Use the emoji as the content */
-#cursor-dot::before {
-    content: "🧠"; /* Music note emoji */
-    font-size: 8rem; /* Adjust emoji size */
-    display: inline-block;
+    transition: transform 0.5s ease, background-color 0.3s ease; /* Smooth transitions for movement and optional hover effect */
 }
 
 
@@ -140,7 +129,7 @@ h2, p {
     color: #948659;
     padding: 10px 20px;
     border-radius: 8px;
-    font-size: 1.8rem;
+    font-size: 3rem;
     z-index: 1001;
 }
 
@@ -175,7 +164,7 @@ button:hover {
     color: #FFE695;
     border: none;
     border-radius: 0; /* Reset default border-radius */
-    font-size: 2rem;
+    font-size: 4rem;
     cursor: pointer;
     pointer-events: auto;
     transition: transform 0.3s ease, background-color 0.3s ease;

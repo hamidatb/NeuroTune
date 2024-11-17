@@ -75,7 +75,8 @@ test_playlists = {
         },
         {
             'name': 'Can’t Stop the Feeling - Justin Timberlake',
-            'image_url': 'images/cant_stop_feeling.jpg'
+            'file_path': 'music/cant_stop_feeling.mp3',
+            'image_url': 'images/cant_stop_feeling.jpeg'
         },
         {
             'name': 'I Gotta Feeling - Black Eyed Peas',
