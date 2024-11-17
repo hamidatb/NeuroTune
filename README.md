@@ -154,6 +154,15 @@ Explore the insights behind NeuroTune's advanced models:
 
 5. Access the app at `http://localhost:5000` and enjoy!
 
+## 🚀 Contributors
+
+- **Hamidat Bello**: Project Lead. Developed the backend and frontend, custom-built and trained the SVM eye-tracking model using Scikit-learn, and contributed to the UX design.
+- **Chidinma Obi-Okoye**: Contributed to the software, working on both the backend and frontend, debugging, and creating the Figma wireframes for the UX design.
+- **Ezra Dese**: Helped develop the KAN EEG mood model, worked on the Muse S EEG hardware, and integrated the mood detection model into the Flask app.
+- **Emmanuel Ssempala**: Focused on developing the KAN EEG mood model and assisted with the Muse S EEG hardware integration.
+- **Onami Ademola**: Worked on the Muse S EEG hardware and contributed to the development of the KAN EEG mood model.
+- **Katie Bauer**: Led the refinement and training of the KAN EEG mood model.
+
 
 ## 🤝 **Contributing**
 We welcome contributions from the community! Whether it’s improving the eye-tracking model, optimizing the UI, or suggesting new features, your input is valued.
