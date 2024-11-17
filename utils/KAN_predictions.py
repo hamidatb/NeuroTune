@@ -67,7 +67,7 @@ def run_live_plot(duration=10):
                 DataFilter.perform_lowpass(
                     channel_data,
                     SampleRate,
-                    35,  # Cutoff frequency
+                    125,  # Cutoff frequency
                     3,   # Filter order
                     FilterTypes.BUTTERWORTH,
                     0
@@ -149,7 +149,7 @@ def read_live():
         DataFilter.perform_lowpass(
             live_data[channel_idx],  # Channel data
             SampleRate,              # Sampling rate
-            35,                    # Cutoff frequency (e.g., 30 Hz)
+            125,                    # Cutoff frequency (e.g., 30 Hz)
             3,                       # Filter order
             FilterTypes.BUTTERWORTH, # Filter type
             0                        # Ripple (used only for Chebyshev filters)
