@@ -91,7 +91,7 @@ Explore the insights behind NeuroTune's advanced models:
 <img src="static/ml_visualizations/KAN_better.png" alt="KAN Architecture" width="500"> 
 
 ###### **Test Results and Accuracy**
-<img src="static/ml_visualizations/kan_training.png" alt="Test Results and Accuracy" width="500"> 
+<img src="static/ml_visualizations/KAN_test.png" alt="Test Results and Accuracy" width="500"> 
 
 ###### **Relative BrainWave Types for Moods**
 <img src="static/ml_visualizations/RelativeBrainwaveTypeForMoods.png" alt="Relative BrainWave Types for Moods" width="500">  
