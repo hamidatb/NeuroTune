@@ -2,10 +2,10 @@
 
 Music is one of the most universal sources of comfort and joy. For many of us, the process of finding the right playlist is simple: we open our music app and search for "happy playlist" or "sad playlist." But have you ever considered how many steps this actually involves? Or the level of fine motor control required to navigate through these apps?
 
-Now imagine someone with a disability that might impact motor control and speech, such as cerebral palsy. Or Parkinsons, with motor termors, or other sppech disabilities. For people with these conditions These seemingly simple tasks become overwhelming. Technology has the power—and responsibility— to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical or mental limitations.
+Now imagine someone with a disability that might impact motor control and speech, such as cerebral palsy. Or Parkinson's, with motor tremors, or other speech disabilities. For people with these conditions, These seemingly simple tasks become overwhelming. Technology has the power—and responsibility— to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical or mental limitations.
 
 ## 🌟 **What Is NeuroTune?**
-**NeuroTune** is a groundbreaking application designed to empower individuals over a large range of motor and speech disabilities:
+**NeuroTune** is a groundbreaking application designed to empower individuals with a large range of motor and speech disabilities:
 - **Real-Time Eye-Tracking** to enable effortless navigation.
 - **Mood Detection with EEG Data** from the Muse S device to create personalized music experiences.
 
@@ -39,7 +39,7 @@ Users can control the app entirely with their eyes:
 
 ### **Core Machine Learning**
 - **Custom Eye-Tracking Model**: Trained on relative pupil positions to accurately predict screen quadrants.
-- **Muse S Emotion Model**: Maps EEG signals from the Muse S headband to four core emotional states- hapiness, sadness, relaxed, and stress.
+- **Muse S Emotion Model**: Maps EEG signals from the Muse S headband to four core emotional states- happiness, sadness, relaxation, and stress.
 
 ### **Frontend**
 - **HTML5**, **CSS3**, **JavaScript**
@@ -111,7 +111,7 @@ Explore the insights behind NeuroTune's advanced models:
 
 1. **Training the Mood Detection Model**
    - We collected EEG data using the Muse S headband across different emotional states.
-   - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, stress, and relaxation. 
+   - Using this labelled data, we trained a neural network to classify emotions like happiness, sadness, stress, and relaxation. 
    - Here, we employed Jupyter Notebooks and Google Colab to explore many models, before settling on a KAN   
 
 2. **Training the Eye-Tracking Model**
