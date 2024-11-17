@@ -1,11 +1,8 @@
-# 🎵 NeuroTune: Redefining Music Accessibility for all Abilities 🎵
+# 🎵 NeuroTune: Redefining Music Accessibility for all Abilities 🎵3
 
-
-### **What Inspired Us?**  
 Music is one of the most universal sources of comfort and joy. For many of us, the process of finding the right playlist is simple: we open our music app and search for "happy playlist" or "sad playlist." But have you ever considered how many steps this actually involves? Or the level of fine motor control required to navigate through these apps?
 
 Now imagine someone with a disability that might impact motor control and speech, such as cerebral palsy. Or Parkinsons, with motor termors, or other sppech disabilities. For people with these conditions These seemingly simple tasks become overwhelming. Technology has the power—and responsibility— to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical or mental limitations.
-
 
 ## 🌟 **What Is NeuroTune?**
 **NeuroTune** is a groundbreaking application designed to empower individuals over a large range of motor and speech disabilities:
@@ -14,6 +11,7 @@ Now imagine someone with a disability that might impact motor control and speech
 
 This hands-free system provides users with instant access to tailored playlists based on their emotions, making music more accessible and impactful. Users can navigate through the application by simply focusing their gaze on an option for 3 seconds. The **🟢 green circle cursor** provides intuitive, real-time feedback as it tracks their eye movements, ensuring a smooth and interactive experience.
 
+<img src="static/media/screenshots/NeuroTune Thumbnail.png" alt="Neurotune Thumbnail" width="500">  
 
 ## 💡 **Key Features**
 
@@ -70,12 +68,15 @@ Users can control the app entirely with their eyes:
 <p> 🟢 green circle cursor: The eye-tracking cursor moves with your gaze, providing real-time visual feedback. </p>
 
 ### **Mood Detection Screen**
-<img src="static/media/screenshots/mood_detection0.png" alt="Mood Detection" width="500">  
+<img src="static/media/screenshots/mood_detection0.png" alt="Mood Detection 0" width="500">  
 
-<img src="static/media/screenshots/mood_detection1.png" alt="Mood Detection" width="500">
+<img src="static/media/screenshots/mood_detetction1.png" alt="Mood Detection 1" width="500">
 
-### **Music Player of Recommended Playlist**
-<img src="static/media/screenshots/playlist_recommendation.png" alt="Playlist Recommendation" width="500">  
+### **Music Player of the Happy Playlist**
+<img src="static/media/screenshots/happy_playlist.png" alt="Happy Playlist Screenshot" width="500">  
+
+### **A User Using NueroTine**
+<img src="static/media/screenshots/user_using_Neurotune.png" alt="User Using Neurotune" width="500">  
 
 
 ## 📊 **Machine Learning Visualizations**
@@ -141,7 +142,7 @@ Explore the insights behind NeuroTune's advanced models:
    pip install -r requirements.txt
    ```
 
-3. Train the models:
+3. Calibrate the gaze model on yourself:
    ```bash
    python utils/train_quadrant_model.py
    ```

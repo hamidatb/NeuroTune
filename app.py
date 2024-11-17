@@ -257,7 +257,6 @@ def device_connection():
 @app.route('/detect_mood')
 def detect_mood():
     global mood
-    # will have to integrate this with the mood model backend.
     # sample_data = pd.read_csv(os.path.join('static', 'data', 'sample_eeg_data.csv'))
     run_live_plot(duration=5)
     mood = predict_emotion()
