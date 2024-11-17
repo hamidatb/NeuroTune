@@ -54,7 +54,7 @@ except FileNotFoundError as e:
     exit()
 
 # Global variables
-mood = None
+mood = "None"
 playlist = []
 tracking_thread = None
 tracking_active = False
@@ -99,7 +99,7 @@ test_playlists = {
         {
             'name': 'Someone Like You - Adele',
             'file_path': 'music/someone_like_you.mp3',
-            'image_url': 'images/someone_like_you.jpg'
+            'image_url': 'images/someone_like_you.png'
         },
         {
             'name': 'Fix You - Coldplay',
@@ -126,17 +126,17 @@ test_playlists = {
         {
             'name': 'Break Stuff - Limp Bizkit',
             'file_path': 'music/break_stuff.mp3',
-            'image_url': 'images/break_stuff.jpg'
+            'image_url': 'images/break_stuff.jpeg'
         },
         {
             'name': 'Get Out My Way - Tedashii feat. Lecrae',
             'file_path': 'music/out_my_way.mp3',
-            'image_url': 'images/out_my_way.jpg'
+            'image_url': 'images/out_my_way.jpeg'
         },
         {
             'name': 'Elevate - DJ Khalil',
             'file_path': 'music/elevate.mp3',
-            'image_url': 'images/elevate.jpg'
+            'image_url': 'images/elevate.jpeg'
         },
         {
             'name': 'Smells Like Teen Spirit - Nirvana',
