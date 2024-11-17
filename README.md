@@ -2,7 +2,7 @@
 
 Music is one of the most universal sources of comfort and joy. For many of us, the process of finding the right playlist is simple: we open our music app and search for "happy playlist" or "sad playlist." But have you ever considered how many steps this actually involves? Or the level of fine motor control required to navigate through these apps?
 
-Now imagine someone with a disability that might impact motor control and speech, such as cerebral palsy. Or Parkinson's, with motor tremors, or other speech disabilities. For people with these conditions, These seemingly simple tasks become overwhelming. Technology has the power—and responsibility— to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical or mental limitations.
+Now imagine someone with a disability that might impact motor control and/or speech, such as cerebral palsy or Parkinson's. For people with these conditions, the simple task of picking and playing a song becomes overwhelming. Technology has the power —and responsibility— to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical or mental limitations.
 
 ## 🌟 **What Is NeuroTune?**
 **NeuroTune** is a groundbreaking application designed to empower individuals with a large range of motor and speech disabilities:
@@ -75,7 +75,7 @@ Users can control the app entirely with their eyes:
 ### **Music Player of the Happy Playlist**
 <img src="static/media/screenshots/happy_playlist.png" alt="Happy Playlist Screenshot" width="500">  
 
-### **A User Using NueroTine**
+### **A User Using NeuroTune**
 <img src="static/media/screenshots/user_using_Neurotune.png" alt="User Using Neurotune" width="500">  
 
 
@@ -85,13 +85,13 @@ Explore the insights behind NeuroTune's advanced models:
 
 ### **Mood Detection Model (KAN)**
 - Our custom **KAN (Kolmogorov-Arnold Network)** was trained using EEG data from the Muse S device, enabling precise mood classification.
-- Below are some visualizations showcasing the model architecture, training process, model accuracy, and extracted statistics:
+- Below are some visualizations showcasing the model architecture, test results and accuracy, and extracted statistics:
 
 ###### **KAN Architecture**
 <img src="static/ml_visualizations/KAN_better.png" alt="KAN Architecture" width="500"> 
 
-###### **Training Process**
-<img src="static/ml_visualizations/kan_training.png" alt="Training process" width="500"> 
+###### **Test Results and Accuracy**
+<img src="static/ml_visualizations/kan_training.png" alt="Test Results and Accuracy" width="500"> 
 
 ###### **Relative BrainWave Types for Moods**
 <img src="static/ml_visualizations/RelativeBrainwaveTypeForMoods.png" alt="Relative BrainWave Types for Moods" width="500">  
@@ -161,7 +161,7 @@ Explore the insights behind NeuroTune's advanced models:
 - **Ezra Dese**: Helped develop the KAN EEG mood model, worked on the Muse S EEG hardware, and integrated the mood detection model into the Flask app. Led model refinement and filtering.
 - **Emmanuel Ssempala**: Focused on developing the KAN EEG mood model and assisted with the Muse S EEG hardware integration.
 - **Onami Ademola**: Worked on the Muse S EEG hardware and contributed to the development of the KAN EEG mood model. Created the script to show the MUSE S Channel reading when in debug mode.
-- **Katie Bauer**: Led the development, refinement and training of the KAN EEG mood model. Researched other possible model types to use.
+- **Katie Bauer**: Led the development, refinement, and training of the KAN EEG mood model. Researched other possible model types to use.
 
 
 ## 🤝 **Contributing**
