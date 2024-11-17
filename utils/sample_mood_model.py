@@ -30,7 +30,7 @@ class MoodModel:
             'eeg9': [0.62, 0.67, 0.63],
             'eeg10': [0.6, 0.65, 0.62]
         })
-        y = ['happy', 'happy', 'happy']
+        y = ['stressed', 'stressed', 'stressed']
 
         # Fit the dummy model
         self.model.fit(X, y)

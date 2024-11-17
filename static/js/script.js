@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function triggerButtonClick(quadrant) {
         const button = buttons[quadrant];
         if (button) {
-            console.log(`Triggering click on ${quadrant} button`);
+            console.log(`Triggering click on ${quadrant} button: script.js`);
             button.click(); // Simulate button click
             // Visual feedback
             button.classList.add('active');
