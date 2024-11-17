@@ -16,7 +16,7 @@ This hands-free system provides users with instant access to tailored playlists 
 ## 💡 **Key Features**
 
 ### 🎯 **Real-Time Eye Tracking**
-We trained our **custom eye-tracking neural network** to map gaze positions to specific screen quadrants. Users can navigate the app with just their eyes, no need for physical touch or verbal instructions.
+We trained our **custom eye-tracking neural network** to map gaze positions to specific screen quadrants. Users can navigate the app with just their eyes, no need for physical touch or verbal instructions. All they need is a focused gaze.
 
 ### 🧠 **Mood Detection**
 Using EEG data collected via the **Muse S device**, we trained a neural network to classify emotional states like happiness, sadness, relaxation, and stress. NeuroTune uses these insights to tailor playlists that match the user’s mood.
