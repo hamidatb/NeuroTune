@@ -1,22 +1,147 @@
 {% extends "base.html" %}
 
 {% block quadrant_buttons %}
-<!-- Only 'Home' button in the top-left -->
 <div id="quadrant-buttons">
-    <button id="button-top-left" class="quadrant-button" data-url="{{ url_for('index') }}">Home</button>
+    <button id="button-top-left" class="quadrant-button" data-url="{{ url_for('index') }}">🏠</button>
 </div>
 {% endblock %}
 
 {% block content %}
+<style>
+    /* General Styles */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #f9e79f; /* Soft yellow background */
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full screen height */
+    }
+
+    .content-box {
+        background-color: #fffde7; /* Light yellow box */
+        padding: 80px 100px;
+        border-radius: 25px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 95%; /* Larger width for the box */
+    }
+
+    .content-box h1 {
+        font-size: 100px; /* Very large font for the title */
+        margin-bottom: 50px;
+        color: #5d4037; /* Dark brown for contrast */
+    }
+
+    .content-box p {
+        font-size: 36px; /* Larger font for body text */
+        color: #6d4c41; /* Medium brown text */
+        margin-bottom: 40px;
+    }
+
+    .rotating-emoji {
+        display: inline-block;
+        font-size: 36px; /* Match the font size of the text */
+        animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .content-box ul {
+        list-style-type: none;
+        padding: 0;
+        font-size: 30px; /* Larger font for list items */
+        color: #6d4c41; /* Medium brown */
+    }
+
+    .content-box ul li {
+        margin: 20px 0;
+    }
+
+    .content-box ul li a {
+        color: #8e44ad; /* Purple links for good contrast */
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .content-box ul li a:hover {
+        text-decoration: underline;
+    }
+
+    .section-title {
+        font-size: 42px; /* Larger font for section titles */
+        margin-top: 50px;
+        color: #5d4037;
+        text-decoration: underline;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
 <div class="container">
-    <h1>Thank You!</h1>
-    <p>Thanks for using NeuroTune.</p>
-    <p>Check out Parkinson’s resources below.</p>
-    <!-- Parkinson's Resources -->
-    <ul>
-        <li><a href="https://www.parkinson.org/">Parkinson's Foundation</a></li>
-        <li><a href="https://www.michaeljfox.org/">Michael J. Fox Foundation</a></li>
-        <!-- Add more resources as needed -->
-    </ul>
+    <!-- "No More Songs" Message -->
+    <div id="no-more-songs" class="content-box">
+        <h1>No More Songs</h1>
+        <p>Your playlist is empty. Redirecting... <span class="rotating-emoji">⏳</span></p>
+    </div>
+
+    <!-- "Thank You" Screen -->
+    <div id="thank-you" class="content-box hidden">
+        <h1>Thank You! </h1>
+        <p>Thanks for using NeuroTune.</p>
+        <p>Check out resources below for support:</p>
+
+        <!-- Parkinson's Resources -->
+        <div>
+            <p class="section-title">🧠 Parkinson’s Resources</p>
+            <ul>
+                <li><a href="https://www.parkinson.org/">Parkinson's Foundation</a></li>
+                <li><a href="https://www.michaeljfox.org/">Michael J. Fox Foundation</a></li>
+            </ul>
+        </div>
+
+        <!-- Cerebral Palsy Resources -->
+        <div>
+            <p class="section-title">🦽 Cerebral Palsy Resources</p>
+            <ul>
+                <li><a href="https://www.cerebralpalsy.org/">Cerebral Palsy Foundation</a></li>
+                <li><a href="https://ucp.org/">United Cerebral Palsy (UCP)</a></li>
+            </ul>
+        </div>
+
+        <!-- Speech Impediment Resources -->
+        <div>
+            <p class="section-title">🗣️ Speech Impediment Resources</p>
+            <ul>
+                <li><a href="https://www.asha.org/">American Speech-Language-Hearing Association (ASHA)</a></li>
+                <li><a href="https://speechandlanguagekids.com/">Speech and Language Kids</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
+
+<script>
+    // Wait for 5 seconds, then switch from "No More Songs" to "Thank You"
+    setTimeout(() => {
+        document.getElementById('no-more-songs').classList.add('hidden');
+        document.getElementById('thank-you').classList.remove('hidden');
+    }, 5000); // 5 seconds
+</script>
 {% endblock %}

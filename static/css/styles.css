@@ -164,7 +164,7 @@ button:hover {
     color: #FFE695;
     border: none;
     border-radius: 0; /* Reset default border-radius */
-    font-size: 4rem;
+    font-size: 15rem;
     cursor: pointer;
     pointer-events: auto;
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -210,7 +210,10 @@ button:hover {
     border-radius: 100px;
     height: 400px;
     width: 500px;
+    
 }
+
+
 
 /* Ensure buttons are accessible */
 .quadrant-button:hover {

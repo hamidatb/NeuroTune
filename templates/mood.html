@@ -3,9 +3,9 @@
 {% block quadrant_buttons %}
 <div id="quadrant-buttons">
     <!-- Upper-left 'Home' button -->
-    <button id="button-top-left" class="quadrant-button" data-url="{{ url_for('index') }}">Home</button>
+    <button id="button-top-left" class="quadrant-button" data-url="{{ url_for('index') }}">🏠</button>
     <!-- Bottom-right 'Proceed' button -->
-    <button id="button-bottom-right" class="quadrant-button" data-url="{{ url_for('show_playlist') }}">Proceed</button>
+    <button id="button-bottom-right" class="quadrant-button" data-url="{{ url_for('show_playlist') }}">➡</button>
 </div>
 {% endblock %}
 
@@ -42,6 +42,22 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+    }
+
+    /* Title Styling */
+    .container h1 {
+        font-size: 8rem !important; /* Override styles.css*/
+        margin-bottom: 30px; /* More spacing below */
+        color: #342E1B; /* Dark brown for text */
+        font-weight: bold;
+    }
+
+    /* Paragraph Styling */
+    .container p {
+        font-size: 3rem !important; /* Increased font size for paragraphs */
+        margin-bottom: 20px; /* More spacing below */
+        color: #342E1B; /* Dark brown for text */
+        font-weight: lighter;
     }
 
     #quadrant-buttons {
