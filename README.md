@@ -1,4 +1,4 @@
-# 🎵 NeuroTune: Redefining Music Accessibility for all Abilities 🎵3
+# 🎵 NeuroTune: Redefining Music Accessibility for all Abilities 🎵
 
 Music is one of the most universal sources of comfort and joy. For many of us, the process of finding the right playlist is simple: we open our music app and search for "happy playlist" or "sad playlist." But have you ever considered how many steps this actually involves? Or the level of fine motor control required to navigate through these apps?
 
@@ -19,7 +19,7 @@ This hands-free system provides users with instant access to tailored playlists 
 We trained our **custom eye-tracking neural network** to map gaze positions to specific screen quadrants. Users can navigate the app with just their eyes, no need for physical touch or verbal instructions.
 
 ### 🧠 **Mood Detection**
-Using EEG data collected via the **Muse S device**, we trained a neural network to classify emotional states like happiness, sadness, relaxation, and anger. NeuroTune uses these insights to tailor playlists that match the user’s mood.
+Using EEG data collected via the **Muse S device**, we trained a neural network to classify emotional states like happiness, sadness, relaxation, and stress. NeuroTune uses these insights to tailor playlists that match the user’s mood.
 
 ### 🎵 **Playlist Integration**
 The app connects directly with a custom playlist to fetch and play personalized songs based on the detected mood. Whether you're feeling joyful or reflective, NeuroTune brings you the perfect soundtrack.
@@ -39,7 +39,7 @@ Users can control the app entirely with their eyes:
 
 ### **Core Machine Learning**
 - **Custom Eye-Tracking Model**: Trained on relative pupil positions to accurately predict screen quadrants.
-- **Muse S Emotion Model**: Maps EEG signals from the Muse S headband to four core emotional states- hapiness, sadness, relaxed, and anger.
+- **Muse S Emotion Model**: Maps EEG signals from the Muse S headband to four core emotional states- hapiness, sadness, relaxed, and stress.
 
 ### **Frontend**
 - **HTML5**, **CSS3**, **JavaScript**
@@ -111,7 +111,7 @@ Explore the insights behind NeuroTune's advanced models:
 
 1. **Training the Mood Detection Model**
    - We collected EEG data using the Muse S headband across different emotional states.
-   - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, anger, and relaxation. 
+   - Using this labeled data, we trained a neural network to classify emotions like happiness, sadness, stress, and relaxation. 
    - Here, we employed Jupyter Notebooks and Google Colab to explore many models, before settling on a KAN   
 
 2. **Training the Eye-Tracking Model**
@@ -166,6 +166,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 Let’s make music accessible for all. 🎶 Together, we can change lives.
-
 
 
