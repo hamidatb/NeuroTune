@@ -11,3 +11,12 @@ Flask-SocketIO
 keras
 eventlet
 screeninfo
+
+# Used for the KAN ML Model
+brainflow
+PyQt5
+pykan
+pyqtgraph
+torch
+PyYAML
+tqdm

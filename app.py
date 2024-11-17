@@ -12,6 +12,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from utils.predict_quadrant import QuadrantPredictor
 from utils.sample_mood_model import MoodModel
+from utils.KAN_predictions import predict_emotion, run_live_plot
 import cv2
 import time
 import signal
@@ -122,7 +123,7 @@ test_playlists = {
             'image_url': 'images/tears_in_heaven.png'
         },
     ],
-    'Stressed': [
+    'Angry': [
         {
             'name': 'Break Stuff - Limp Bizkit',
             'file_path': 'music/break_stuff.mp3',
@@ -149,7 +150,7 @@ test_playlists = {
             'image_url': 'images/killing_in_the_name.png'
         },
     ],
-     'Relaxed': [
+     'Stressed': [
         {
             'name': 'Snowfall - Idealism',
             'file_path': 'music/snowfall.mp3',
@@ -257,8 +258,10 @@ def device_connection():
 def detect_mood():
     global mood
     # will have to integrate this with the mood model backend.
-    sample_data = pd.read_csv(os.path.join('static', 'data', 'sample_eeg_data.csv'))
-    mood = mood_model.predict(sample_data)[0] 
+    # sample_data = pd.read_csv(os.path.join('static', 'data', 'sample_eeg_data.csv'))
+    run_live_plot(duration=5)
+    mood = predict_emotion()
+    print(f"Mood detected from MUSE S {mood}")
 
     # Render detect_mood.html, which will proceed to show_mood after delay
     return render_template('detect_mood.html')

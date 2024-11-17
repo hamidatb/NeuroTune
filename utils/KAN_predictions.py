@@ -1,14 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 from pathlib import Path
-import tarfile
-import urllib.request
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
-import os
 from brainflow.board_shim import BoardShim, BrainFlowInputParams, BoardIds
 from brainflow.data_filter import DataFilter, FilterTypes
 import time
@@ -24,93 +16,123 @@ def run_live_plot(duration=10):
     # Initialize BrainFlow parameters
     SampleRate = 256
     params = BrainFlowInputParams()
-    params.serial_port = "COM7"  # Replace with your actual port
-    board_id = BoardIds.MUSE_S_BLED_BOARD.value
+    params.serial_port = "/dev/tty.wlan-debug"  # Replace with your actual port
+    board_id = BoardIds.MUSE_S_BOARD.value
     board = BoardShim(board_id, params)
 
     # Prepare the EEG session
-    board.prepare_session()
-    print("Starting Stream")
-    board.start_stream()
+    try:
+        board.prepare_session()
+        print("Starting Stream")
+        board.start_stream()
 
-    # Fetch EEG channels
-    eeg_channels = board.get_eeg_channels(board_id)
-    channel_count = len(eeg_channels)
-    sample_window = SampleRate  # Plot the last second of data
-    data_buffer = np.zeros((channel_count, sample_window))
+        # Fetch EEG channels
+        eeg_channels = board.get_eeg_channels(board_id)
+        channel_count = len(eeg_channels)
+        sample_window = SampleRate  # Plot the last second of data
+        data_buffer = np.zeros((channel_count, sample_window))
 
-    # Initialize PyQt application
-    app = QtWidgets.QApplication([])
-    win = pg.GraphicsLayoutWidget(title="Real-Time EEG Data")
-    win.resize(800, 600)
-    win.show()
+        # Initialize PyQt application
+        app = QtWidgets.QApplication([])
+        win = pg.GraphicsLayoutWidget(title="Real-Time EEG Data")
+        win.resize(800, 600)
+        win.show()
 
-    # Add plot and curves for each channel
-    plots = []
-    curves = []
-    for i in range(channel_count):
-        plot = win.addPlot(row=i, col=0)
-        plot.setYRange(-100, 100)  # Adjust the range as per your data
-        plot.setLabel("left", f"Channel {i + 1}", units="µV")
-        plot.showGrid(x=True, y=True)
-        curve = plot.plot(pen=pg.mkPen(color=pg.intColor(i, hues=channel_count), width=2))
-        plots.append(plot)
-        curves.append(curve)
+        # Add plot and curves for each channel
+        plots = []
+        curves = []
+        for i in range(channel_count):
+            plot = win.addPlot(row=i, col=0)
+            plot.setYRange(-100, 100)  # Adjust the range as per your data
+            plot.setLabel("left", f"Channel {i + 1}", units="µV")
+            plot.showGrid(x=True, y=True)
+            curve = plot.plot(pen=pg.mkPen(color=pg.intColor(i, hues=channel_count), width=2))
+            plots.append(plot)
+            curves.append(curve)
 
-    def update():
-        """Fetch and plot live EEG data."""
-        nonlocal data_buffer
+        def update():
+            """Fetch and plot live EEG data."""
+            nonlocal data_buffer
 
-        # Fetch the latest data
-        current_data = board.get_current_board_data(25)
-        for idx, channel_idx in enumerate(eeg_channels):
-            channel_data = current_data[channel_idx]
+            # Fetch the latest data
+            current_data = board.get_current_board_data(25)
+            if current_data is None or len(current_data) == 0:
+                print("No data received from the board.")
+                return
 
-            # Apply low-pass filter
-            DataFilter.perform_lowpass(
-                channel_data,
-                SampleRate,
-                35,  # Cutoff frequency
-                3,   # Filter order
-                FilterTypes.BUTTERWORTH,
-                0
-            )
+            for idx, channel_idx in enumerate(eeg_channels):
+                channel_data = current_data[channel_idx]
 
-            # Update the buffer
-            data_buffer[idx, :-25] = data_buffer[idx, 25:]  # Shift data left
-            data_buffer[idx, -25:] = channel_data  # Add new data
+                # Apply low-pass filter
+                DataFilter.perform_lowpass(
+                    channel_data,
+                    SampleRate,
+                    35,  # Cutoff frequency
+                    3,   # Filter order
+                    FilterTypes.BUTTERWORTH,
+                    0
+                )
 
-            # Update the curve
-            curves[idx].setData(data_buffer[idx])
+                # Update the buffer
+                data_buffer[idx, :-25] = data_buffer[idx, 25:]  # Shift data left
+                data_buffer[idx, -25:] = channel_data  # Add new data
 
-    def stop_after_duration():
-        """Stop the EEG session and close the application after the specified duration."""
-        print("10 seconds elapsed. Stopping stream.")
-        board.stop_stream()
-        board.release_session()
-        app.quit()
+                # Update the curve
+                curves[idx].setData(data_buffer[idx])
 
-    # Set up a timer to update the plot periodically
-    update_timer = QtCore.QTimer()
-    update_timer.timeout.connect(update)
-    update_timer.start(40)  # ~25 Hz update rate
+        def stop_after_duration():
+            """Stop the EEG session and close the application after the specified duration."""
+            print(f"{duration} seconds elapsed. Stopping stream.")
+            update_timer.stop()
+            board.stop_stream()
+            board.release_session()
+            win.close()  # Explicitly close the window
+            app.quit()
 
-    # Set up a timer to stop the session after 30 seconds
-    stop_timer = QtCore.QTimer()
-    stop_timer.singleShot(duration * 1000, stop_after_duration)
+        # Set up a timer to update the plot periodically
+        update_timer = QtCore.QTimer()
+        update_timer.timeout.connect(update)
+        update_timer.start(40)  # ~25 Hz update rate
+        print("Started update timer.")
 
-    app.exec_()
+        # Set up a timer to stop the session after the specified duration
+        stop_timer = QtCore.QTimer()
+        stop_timer.setSingleShot(True)
+        stop_timer.timeout.connect(stop_after_duration)
+        stop_timer.start(duration * 1000)
+        print(f"Stream will stop after {duration} seconds.")
 
+        app.exec()
+        print("Application has exited.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        print("Stopping stream and releasing session.")
+        try:
+            update_timer.stop()
+        except:
+            pass
+        try:
+            board.stop_stream()
+            board.release_session()
+        except:
+            pass
+        try:
+            win.close()
+        except:
+            pass
+        try:
+            app.quit()
+        except:
+            pass
 
-if __name__ == "__main__":
-    run_live_plot(duration=10)  # Run for 30 seconds
 
 # Main Functions
 def read_live():
     SampleRate = 256
     params = BrainFlowInputParams()
-    params.serial_port = "COM7" # Depending on your device and OS
-    board_id = BoardIds.MUSE_S_BLED_BOARD.value # For Muse S Device
+    params.serial_port = "/dev/tty.wlan-debug"  # Replace with your actual port
+    board_id = BoardIds.MUSE_S_BOARD.value # For Muse S Device
     board = BoardShim(board_id, params)
     board.prepare_session()
     print("Analyzing Waves")
@@ -186,57 +208,56 @@ def wave_to_df(bin):
   df = pd.DataFrame.from_dict([wave_data])
   return df
 
-def main():
+def brainflow_main():
     data = read_live()
     bins = BrainwaveBins(data)
     df = wave_to_df(bins)
     return df
 
-# Preprocess Based on Master Data - Make sure to have master data in directory
-master_data = pd.read_csv(r"C:\Users\Ezra\Desktop\master_df1.csv") # Change this for your directory
 
-y = master_data['Emotion']
-X = master_data.drop('Emotion', axis=1)
+def predict_emotion():
+    # Preprocess Based on Master Data - Make sure to have master data in directory
+    master_data = pd.read_csv(os.path.join('static', 'data', 'master_df1.csv'))
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import LabelEncoder
-scaler = StandardScaler()
-scaler.fit(X)
-le = LabelEncoder()
-y = le.fit_transform(y)
+    y = master_data['Emotion']
+    X = master_data.drop('Emotion', axis=1)
 
-# Make Prediction
-pred = main()
-pred_scaled = scaler.transform(pred) 
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.preprocessing import LabelEncoder
+    scaler = StandardScaler()
+    scaler.fit(X)
+    le = LabelEncoder()
+    y = le.fit_transform(y)
 
-import warnings
-warnings.filterwarnings("ignore")
-model = KAN.loadckpt(r"\Users\Ezra\Desktop\model\0.2") # Change this for your directory (Remove the ending after "0.2")
+    # Make Prediction
+    pred = brainflow_main()
+    pred_scaled = scaler.transform(pred) 
 
-# Convert to tensor and add a batch dimension
-new_instance_tensor = torch.tensor(pred_scaled, dtype=torch.float32)
+    import warnings
+    warnings.filterwarnings("ignore")
+    model = KAN.loadckpt(os.path.join('mood_model', 'model', '0.2'))
 
-# Pass the scaled instance through the model
-logits = model(new_instance_tensor)
+    # Convert to tensor and add a batch dimension
+    new_instance_tensor = torch.tensor(pred_scaled, dtype=torch.float32)
 
-# Get the predicted class index
-predicted_class_idx = torch.argmax(logits, dim=1).item()
+    # Pass the scaled instance through the model
+    logits = model(new_instance_tensor)
 
-# Decode the predicted index back to the emotion label
-predicted_emotion = le.inverse_transform([predicted_class_idx])[0]
+    # Get the predicted class index
+    predicted_class_idx = torch.argmax(logits, dim=1).item()
 
-# Angry Bin Correlates To Stress
-if predicted_emotion == "Angry":
-    predicted_emotion = "Stressed"
-    
-# Ensure that predicted_emotion is a string representing the class label
-# Mapping index to emotion directly, since inverse_transform() will return string labels
-print()
-print()
-print(predicted_emotion)
+    # Decode the predicted index back to the emotion label
+    predicted_emotion = le.inverse_transform([predicted_class_idx])[0]
 
-
+    # Angry Bin Correlates To Stress
+    if predicted_emotion == "Angry":
+        predicted_emotion = "Stressed"
+        
+    # Ensure that predicted_emotion is a string representing the class label
+    # Mapping index to emotion directly, since inverse_transform() will return string labels
+    return str(predicted_emotion)
 
 
-
-
+if __name__ == "__main__":
+    run_live_plot(duration=5)  # Run for 30 seconds
+    print(predict_emotion())
