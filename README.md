@@ -9,7 +9,7 @@ Now imagine someone with a disability that might impact motor control and/or spe
 - **Real-Time Eye-Tracking** to enable effortless navigation.
 - **Mood Detection with EEG Data** from the Muse S device to create personalized music experiences.
 
-This hands-free system provides users with instant access to tailored playlists based on their emotions, making music more accessible and impactful. Users can navigate through the application by simply focusing their gaze on an option for 3 seconds. The **🟢 green circle cursor** provides intuitive, real-time feedback as it tracks their eye movements, ensuring a smooth and interactive experience.
+This hands-free system provides users with instant access to tailored playlists based on their emotions, making music more accessible and impactful. Users can navigate through the application by simply focusing their gaze on an option for 3 seconds. The **🟢 green circle cursor** provides intuitive, real-time feedback as it tracks their eye movements, ensuring a smooth, interactive experience.
 
 <img src="static/media/screenshots/NeuroTune Thumbnail.png" alt="Neurotune Thumbnail" width="500">  
 
