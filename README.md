@@ -1,5 +1,9 @@
 # 🎵 NeuroTune: Redefining Music Accessibility for all Abilities 🎵
 
+Project Logic and Demo:
+https://github.com/user-attachments/assets/c8e453de-bd5c-4f44-8a85-81ffd740a1c0
+
+
 Music is one of the most universal sources of comfort and joy. For many of us, the process of finding the right playlist is simple: we open our music app and search for "happy playlist" or "sad playlist." But have you ever considered how many steps this actually involves? Or the level of fine motor control required to navigate through these apps?
 
 Now imagine someone with a disability that might impact motor control and/or speech, such as cerebral palsy or Parkinson's. For people with these conditions, the simple task of picking and playing a song becomes overwhelming. Technology has the power —and responsibility— to bridge this gap. **NeuroTune** was built with one mission: to ensure everyone can experience the same joy and comfort of music, regardless of physical or mental limitations.
